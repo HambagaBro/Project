@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Listado de Hoteles</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="hotelfrontend.js"></script>
+</head>
+<body onload="cargahotelesenlatabla()">
+<table id="tabladehoteles">
+	<tr>
+		<script type="text/javascript">
+			function cargahotelesenlatabla()
+	{
+			var hotelinstanciado = new Hotel();
+
+			hotelinstanciado.Seleccionartodos().then(function(response){ 
+
+				for (var ele in response)
+				{
+					document.getElementById('tabladehoteles').innerHTML +=
+					"<tr><td>" + response[ele]._id + "</td><td>"+
+					response[ele].HOTEL + "</td><td>"+
+					response[ele].CARACTERISTICAS + "</td><td>"+
+					response[ele].UBICACION + "</td><td>"+
+					response[ele].HABITACIONES + "</td><td>"+
+					response[ele].PRECIO + "</td><td>"+
+					response[ele].ESTRELLAS + "</td><td> <img src='"+
+					response[ele].IMAGEN+ "' width = '100px' height= '100px'/></td><td>"+
+					response[ele].FECHA + "</td></tr>";
+				}
+
+					}, function(error) {
+						console.error("Failed!", error);
+						alert("Error " + error);
+		});
+	}
+		</script>
+</body>
+</html>
